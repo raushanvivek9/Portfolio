@@ -1,0 +1,180 @@
+{% extends "index.html" %} {% block title %} Home {% endblock title %} 
+{% block body %}
+<div class="content-body">
+  <div class="card bg-dark text-white">
+    <img src="/static/images/code.gif" class="card-img" alt="..."  style="width:auto; height:450px; opacity: 0.5;">
+    <div class="img-overlay px-4 py-4">
+      
+      <div class="right-overlay">
+        <h1 class="card-title" style="font-weight: 800">Raushan Vivek</h1>
+        {% for file in files%}
+        <p class="card-text ml-4 pr-4 typing-text text-justify">{{file.about}}</p>
+
+          <div class="download-btn">
+            
+          
+            <a href="{% url 'download_file' file.id %}"  class="btn btn-outline-success">Download CV</a>
+
+            {% endfor %}
+          </div>
+
+          
+      </div>
+      <div class="left-overlay">
+
+        <img src="static/images/vivek.jpg" class="card-img-top rounded-circle border border-success cvimage shadow" alt="..."/><br/>
+        <div class="social">
+          <a href="https://www.linkedin.com/in/raushan-vivek-9220b416a/"><img class="socialmedia" src="/static/images/linkdin.png"/></a>
+          <a href="https://github.com/raushanvivek9"><img class="socialmedia" src="/static/images/github.png"/></a>
+        </div>
+      </div>
+      
+    </div>
+
+  </div>
+  <div class="body_content">
+    <div class="Skill">
+    
+<div class="container ">
+  <div id="skill">
+  <P ><h2 class="text-center" style="font-weight: 800;">Professional Skills</h2></p>
+    <div class="shadow"> 
+      <div class="grid-container" >
+        {% for sk in skill %} 
+          <div class="grid-item" >
+
+            <p class="skill">{{sk.skill_name}}</p>
+            <div class="progress shadow">      
+              <div class="progress-bar" role="progressbar" style="width:{{sk.skill_per}}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{sk.skill_per}}</div>
+            </div>  
+          </div>  
+        {% endfor %} 
+      </div> 
+    </div>
+  </div>
+</div>
+</div>
+
+<div id="education">
+  <div div class="container">
+  <P><h2 class="text-center" style="font-weight: 800;">Education</h2></p>
+    <div class="grid-container2" >
+      {% for ed in edu%}
+      <div class="card mb-3 shadow  mb-5 bg-white rounded" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-4 bg-info text-white">
+            <div class="text-center my-4">
+            <h5 class="card-title">{{ed.edu_type}}</h5>
+            <p class="card-text">Passing Year: {{ed.edu_yr}}</p>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ed.edu_name}}</h5>
+              <p class="card-text">{{ed.edu_unvi}}</p>
+              <p class="card-text">Percentage/CGPA: {{ed.edu_per}}</p>
+              {% comment %} <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> {% endcomment %}
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div id="experince">
+  <div div class="container">
+  <P><h2 class="text-center" style="font-weight: 800;">Experience</h2></p>
+    
+    <div class="grid-container2" >
+      {% for ex in exp %}
+      <div class="card mb-3 shadow  mb-5 bg-white rounded" style="max-width: 540px; ">
+        <div class="row no-gutters"  style="height: -webkit-fill-available;">
+          <div class="col-md-4  text-white" style="background-color: #71ab20;">
+            <div class="text-center my-4 px-2">
+            <h5 class="card-title">{{ex.role_name}}</h5>
+            <p class="card-text"> {{ex.comp_name}}</p>
+            <p class="card-text"> {{ex.date_To}} - {{ex.date_From}}</p>
+
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <p class="card-text"><span class="font-weight-bold">Tools Used:-</span> {{ex.skill_name}}</p>
+              <p class="card-text text-justify">{{ex.about_role}}</p>
+            </div>
+          </div>
+        </div>
+      </div>    
+    {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+<div id="projects">
+  <div div class="container">
+  <P><h2 class="text-center" style="font-weight: 800;">Projects</h2></p>
+    
+    <div class="grid-container2" >
+      {% for pro in proj %}
+      <div class="card mb-3 shadow  mb-5 bg-white rounded" style="max-width: 540px; ">
+        <div class="row no-gutters" style="height: -webkit-fill-available;">
+          <div class="col-md-4 bg-success text-white">
+            <div class="text-center my-4">
+            <h5 class="card-title">{{pro.pro_name}}</h5>
+            <p class="card-text"> {{pro.pro_type}}</p>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <p class="card-text"><span class="font-weight-bold">Tools Used:-</span> {{pro.pro_tech}}</p>
+              <a class="card-text font-weight-bold" href={{pro.pro_link}>GitHub Link</a>
+              <p class="card-text text-justify">{{pro.pro_dis}}</p>
+              <a class="card-text" href={{pro.pro_link}}>Read more</a>
+            </div>
+          </div>
+        </div>
+      </div>    
+    {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div id="ContactMe">
+  <div div class="container">
+    <div class="d-flex justify-content-center">
+      <div class="card shadow  mb-5 bg-white rounded" style="width: 540px;">
+        <div class="row no-gutters r">
+          <div class="col">
+            <div class="card-body">
+              <h5 class="card-title text-center">Contact Me</h5>
+              <h6 class="card-text">Phone</h6>
+              <p class="card-text">(+91)7992231052</p>
+              <h6 class="card-text">Email</h6>
+              <p class="card-text">raushanvivek9@gmail.com</p>
+              <div class=" d-flex justify-content-center">
+                <a href="https://www.linkedin.com/in/raushan-vivek-9220b416a/"><img class="socialmedia" src="/static/images/linkdin.png"/></a>
+                <a href="https://github.com/raushanvivek9"><img class="socialmedia" src="/static/images/github.png"/></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+<script>
+  document.querySelector('a').addEventListener('click',function(e){
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+  });
+</script>
+
+{% endblock body%}
